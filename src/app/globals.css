@@ -1,9 +1,12 @@
 @import "tailwindcss";
 
+
+/* changes made here will be applied to the website when it is in light mode */
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -12,13 +15,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
+/* changes made here will be applied to the website when it is in dark mode */
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  --background: #ffffff;
+  --foreground: #171717;
   }
 }
 
+
+/* this applies the above color variables to the actual page */
 body {
   background: var(--background);
   color: var(--foreground);
