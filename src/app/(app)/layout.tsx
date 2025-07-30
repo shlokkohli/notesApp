@@ -18,10 +18,10 @@ export default async function RootLayout({ children }: { children: React.ReactNo
 
     return (
     <div className="min-h-screen flex flex-col">
-        <div className="sticky top-0 z-50">
+        <div className="fixed top-0 z-50 bg-white backdrop-blur shadow-sm md:px-10 w-full">
             <AuthNavbar />
         </div>
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto pt-18">
             {children}
         </main>
     </div>

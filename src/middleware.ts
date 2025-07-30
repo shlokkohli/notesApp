@@ -3,7 +3,7 @@ import { getToken } from "next-auth/jwt"
 import { NextRequest, NextResponse } from "next/server"
 
 // whatever comes inside the matcher sets authentication only for those pages
-export const config = { matcher: ["/create", "/view", "/profile"] }
+export const config = { matcher: ["/((?!api|_next|favicon.ico).*)"] }
 
 export async function middleware(request : NextRequest){
 
@@ -13,8 +13,8 @@ export async function middleware(request : NextRequest){
     const url = request.nextUrl;
 
     // if the user has token and the given routes are hit, then redirect the user
-    if (token && (url.pathname.startsWith("/login") || url.pathname === "/")) {
-        return NextResponse.redirect(new URL("/view", request.url));
+    if (token && (url.pathname.startsWith("/login") || url.pathname.startsWith("/sign-up") || url.pathname === "/")) {
+        return NextResponse.redirect(new URL("/viewNotes", request.url));
     }
 
     if (

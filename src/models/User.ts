@@ -1,7 +1,8 @@
-import mongoose, { Document, Schema } from "mongoose";
+import mongoose, { Document, Schema, Types } from "mongoose";
 
 // extends document gives me type safety for things like   -> _id, .save()    later in the code
 export interface IUser extends Document {
+    _id : Types.ObjectId
     name: string,
     email: string,
     password: string
