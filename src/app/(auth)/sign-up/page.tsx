@@ -148,7 +148,7 @@ const page = () => {
                 {/* submit button */}
                 <button
                   type='submit'
-                  className={`${isLoading ? 'bg-blue-300' : 'bg-blue-500 hover:bg-blue-600 hover:scale-105'} rounded-lg text-gray-100 mt-2 p-1 duration-300 transition-all border focus-visible:border-blue-600 focus:outline-none cursor-pointer`}
+                  className={`${isLoading ? 'bg-blue-300' : 'bg-blue-500 hover:bg-blue-600 active:scale-95'} rounded-lg text-gray-100 mt-2 p-1 duration-300 transition-all border focus-visible:border-blue-600 focus:outline-none cursor-pointer`}
                   disabled={isLoading}
                 >
                   Sign Up

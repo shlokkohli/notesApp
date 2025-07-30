@@ -1,10 +1,21 @@
+import Link from 'next/link'
 import React from 'react'
 
 const page = () => {
   return (
-    <div className='flex flex-col justify-center items-center md:p-5'>
+    <div className='md:p-5'>
+
+      {/* Create Note Button */}
+        <div className='flex justify-end pt-6 sm:pt-1'>
+            <Link href="/viewNotes">
+            <button className='bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600 active:scale-95 transition'>
+                View Notes
+            </button>
+            </Link>
+        </div>
+
         {/* overall notes section */}
-        <div className='flex flex-col justify-center items-center gap-8'>
+        <div className='flex flex-col justify-center items-center gap-8 sm:mt-0'>
 
             <div className='text-center'>
                 <h1 className='text-4xl font-bold'>
