@@ -95,7 +95,7 @@ const page = () => {
                 {/* name input */}
                 <div className='flex flex-col gap-2'>
                   <label htmlFor="email" className='text-sm font-bold text-gray-600'>
-                    Full Name
+                    Name
                   </label>
                   <input
                     type="text"
