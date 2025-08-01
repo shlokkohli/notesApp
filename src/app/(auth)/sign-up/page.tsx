@@ -7,8 +7,8 @@ import { useForm } from 'react-hook-form';
 import z from 'zod';
 import { signUpSchema } from '@/schemas/signUpSchema';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { ApiResponse } from '@/types/ApiResponse';
-import { signUpResponse } from '@/types/signUpResponse.types';
+import { ApiResponse } from '@/types/ApiResponse.types';
+import { User } from '@/types/user.types';
 import { signIn } from 'next-auth/react';
 
 const page = () => {
@@ -41,7 +41,7 @@ const page = () => {
         body: JSON.stringify(data)
       })
 
-      const response: ApiResponse<signUpResponse> = await res.json()
+      const response: ApiResponse<User> = await res.json()
 
       // if successfully signed up, automatically login
       if(response.success){

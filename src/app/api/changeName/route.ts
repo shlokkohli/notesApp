@@ -3,14 +3,18 @@ import { NextResponse } from "next/server";
 import { authOptions } from "../auth/[...nextauth]/options";
 import connectDB from "@/lib/connectDB";
 import UserModel from "@/models/User";
+import { ErrorResponse } from "@/types/ErrorResponse.types";
 
 export async function POST(request : Request){
 
     const session = await getServerSession(authOptions);
 
     if(!session){
-        return NextResponse.json(
-            { message : "Unauthorized" },
+        return NextResponse.json<ErrorResponse>(
+            {
+                success: false,
+                message: "Unauthorized"
+            },
             { status : 401 }
         )
     }
@@ -25,8 +29,11 @@ export async function POST(request : Request){
         const user = await UserModel.findById(session.user._id);
 
         if(!user){
-            return NextResponse.json(
-                { message : "User not found" },
+            return NextResponse.json<ErrorResponse>(
+                {
+                    success: false,
+                    message: "User not found"
+                },
                 { status : 404 }
             )
         }

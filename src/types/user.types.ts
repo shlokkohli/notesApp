@@ -3,8 +3,3 @@ export interface User {
     name : string,
     email : string,
 }
-
-export interface signUpResponse {
-    message : string,
-    user : User,
-}

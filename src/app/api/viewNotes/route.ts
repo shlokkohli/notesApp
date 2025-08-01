@@ -4,16 +4,18 @@ import { NextResponse } from "next/server";
 import connectDB from "@/lib/connectDB";
 import UserModel from "@/models/User";
 import NotesModel from "@/models/Notes";
+import { ErrorResponse } from "@/types/ErrorResponse.types";
 
 export async function GET(){
 
     const session = await getServerSession(authOptions);
 
     if(!session){
-        return NextResponse.json(
-            { message : "Unauthorized" },
-            { status : 401 }
-        )
+        return NextResponse.json<ErrorResponse>({
+            success: false,
+            message: "Unauthorized"
+        },
+        { status: 401 })
     }
 
     await connectDB();
@@ -23,8 +25,11 @@ export async function GET(){
         const user = await UserModel.findById(session.user._id);
 
         if(!user){
-            return NextResponse.json(
-                { message : "User not found" },
+            return NextResponse.json<ErrorResponse>(
+                {
+                    success: false,
+                    message: "User not found"
+                },
                 { status : 404 }
             )
         }
@@ -42,8 +47,11 @@ export async function GET(){
     } catch (error) {
 
         console.log("Failed to fetch notes", error);
-        return NextResponse.json(
-            { message : "Failed to fetch notes" },
+        return NextResponse.json<ErrorResponse>(
+            {
+                success: false,
+                message: "Failed to fetch notes"
+            },
             { status : 500 }
         )
         

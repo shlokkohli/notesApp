@@ -2,8 +2,9 @@ import connectDB from "@/lib/connectDB";
 import UserModel, { IUser } from "@/models/User";
 import bcrypt from "bcryptjs";
 import { NextResponse } from "next/server";
-import { ApiResponse } from "@/types/ApiResponse";
-import { User } from "@/types/signUpResponse.types";
+import { ApiResponse } from "@/types/ApiResponse.types";
+import { User } from "@/types/user.types";
+import { ErrorResponse } from "@/types/ErrorResponse.types";
 
 export async function POST(request : Request) {
 
@@ -18,12 +19,11 @@ export async function POST(request : Request) {
 
         // if the user already exists, throw error
         if(existingUser){
-            const response: ApiResponse<null> = {
+            return NextResponse.json<ErrorResponse>({
                 success: false,
-                message: "Email already exists",
-            };
-
-            return NextResponse.json(response, { status: 400 });
+                message: "Email already exists"
+            },
+            { status: 400 });
         }
 
         // now if the user does not exist
@@ -53,13 +53,10 @@ export async function POST(request : Request) {
     } catch (error) {
 
         console.log("SignUp error ", error);
-
-        const response: ApiResponse<null> = {
+        return NextResponse.json<ErrorResponse>({
             success: false,
             message: "Error registering user"
-        }
-
-        return NextResponse.json(response, { status : 500 })
+        }, { status : 500 })
         
     }
 
